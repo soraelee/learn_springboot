@@ -87,5 +87,12 @@ public class BoardRepositoryTests {
 //    Page<Board> findKeyword(String keyword, Pageable pageable);
 //    @Query(value = "select now()", nativeQuery = true)
 //    String getTime();
+    @Test
+    public void testSearch1(){
+        //2 page order by bno desc
+        Pageable pageable = PageRequest.of(1, 10, Sort.by("bno").descending());
+
+        boardRepository.search1(pageable);
+    }
 
 }
