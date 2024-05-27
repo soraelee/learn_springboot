@@ -10,14 +10,14 @@ import lombok.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
+@SequenceGenerator(
+        name = "board_id_generator",
+        sequenceName = "board_seq",
+        allocationSize = 1)
 public class Board extends BaseEntity{
 
     @Id
-    @SequenceGenerator(
-            name = "ENTITY_ID_GENERATOR",
-            sequenceName = "BOARD_SEQUENCES",
-            initialValue = 1, allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "board_id_generator")
     private Long bno;
 
     @Column(length = 500, nullable=false) //칼럼의 길이와 null 허용 여부
@@ -29,5 +29,9 @@ public class Board extends BaseEntity{
     @Column(length = 50, nullable = false)
     private String writer;
 
-
+    //수정 기능 추가
+    public void change(String title, String content){
+        this.title = title;
+        this.content = content;
+    }
 }
