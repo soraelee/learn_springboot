@@ -68,9 +68,12 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public PageResponseDTO<BoardDTO> list(PageRequestDTO pageRequestDTO) {
         //BoardRepository 호출 기능
-        String[] types = pageRequestDTO.getTypes();
-        String keyword = pageRequestDTO.getKeyword();
-        Pageable pageable = pageRequestDTO.getPageable("bno");
+        String[] types = pageRequestDTO.getTypes(); //method
+        String keyword = pageRequestDTO.getKeyword(); // getter
+        Pageable pageable = pageRequestDTO.getPageable("bno"); //method
+        log.info("types : "+types);
+        log.info("keyword : "+keyword);
+        log.info("pageable : "+pageable);
 
         Page<Board> result = boardRepository.searchAll(types, keyword, pageable);
 
