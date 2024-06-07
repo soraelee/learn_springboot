@@ -24,7 +24,7 @@ public class BoardController {
 
     @GetMapping("/list")
     public void list(PageRequestDTO pageRequestDTO, Model model){
-        PageResponseDTO responseDTO = bs.list(pageRequestDTO); //생성자 생성
+        PageResponseDTO responseDTO = bs.listWithReplyCount(pageRequestDTO); //생성자 생성
         log.info(responseDTO);
 
         model.addAttribute("responseDTO", responseDTO); //모델로 전달
